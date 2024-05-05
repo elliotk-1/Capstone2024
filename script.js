@@ -1,9 +1,10 @@
+// automatically generated table on file selection
 (function () {
     var DELIMITER = ',';
     var NEWLINE = '\n';
     var qRegex = /^"|"$/g;
     var i = document.getElementById('file');
-    var table = document.getElementById('table');
+    var table = document.getElementById('table-data');
 
     if (!i) {
         return;
@@ -43,20 +44,6 @@
         var headers = rows.shift().trim().split(DELIMITER);
         var htr = document.createElement('tr');
 
-        headers.forEach(function (h) {
-            var th = document.createElement('th');
-            var ht = h.trim();
-
-            if (!ht) {
-                return;
-            }
-
-            th.textContent = ht.replace(qRegex, '');
-            htr.appendChild(th);
-        });
-
-        table.appendChild(htr);
-
         var rtr;
 
         rows.forEach(function (r) {
@@ -86,3 +73,21 @@
         });
     }
 })();
+
+// to make data columns and header columns same width
+function setHeaderColumnWidths() {
+    var headerTable = document.getElementById("table-header");
+    var dataTable = document.getElementById("table-data");
+
+    // get the first row of the data table
+    var dataRow = dataTable.getElementsByTagName("tr")[0];
+
+    // set column widths in the header table to match the data table
+    for (var i = 0; i < dataRow.children.length; i++) {
+      headerTable.rows[0].cells[i].style.width = dataRow.children[i].offsetWidth + "px";
+    }
+  }
+
+  // call the function initially and when window size changes
+  setHeaderColumnWidths();
+  window.addEventListener("resize", setHeaderColumnWidths);
