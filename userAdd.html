@@ -36,10 +36,18 @@
             </div>
         </nav>
 
-        <br>
-        <h1 style="margin-left: 25px;">Coming Soon</h1>
-        <br>
-
+        <!-- place for the user to add their own data -->
+        <div class="formula">
+            <br><h1>Add Data</h1><br>
+            <form id="data-form">
+                <label for="year-input">Year:</label>
+                <input type="year" id="year-input" required><br><br>
+                <label for="player-num">Player Number:</label>
+                <input type="text" id="player-num" required><br><br>
+                <button type="add" onclick="submitData()">Add</button>
+            </form>
+        </div>
+        
         <!-- add excel sheets, a way for the user to add their own stats -->
         <button onclick="select()" class="dropbtn">Select a Year</button>
         <div id="myDropdown" class="dropdown__content">
@@ -55,7 +63,7 @@
             console.log("select function used");
             };
         </script>
-        
+
         <input type="file" id="file">
         <table id="table"></table>
         <script src="/script.js"></script>
@@ -80,6 +88,7 @@
             </div>
         </div>
 
-        <script src="app.js"></script>
+        <script src="/form.js"></script>
+        <script src="/app.js"></script>
     </body>
 </html>
